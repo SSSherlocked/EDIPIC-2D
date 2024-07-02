@@ -5,7 +5,11 @@ project (EDIPIC-2D LANGUAGES C Fortran)
 set(CMAKE_Fortran_COMPILER  mpifort)
 set(CMAKE_C_COMPILER        mpicc)
 
-file(GLOB src_f_files "src/*.f90")
+## avoid the line length limit
+set(CMAKE_Fortran_FLAGS     -ffree-line-length-none)
+
+## DO NOT ignore the 'F90' files!
+file(GLOB src_f_files "src/*90")
 file(GLOB src_c_files "src/*.c")
 
 ## set PETSc and HYPRE library directories
@@ -15,18 +19,12 @@ set(LINK_DIRS       ${LINK_DIRS}        "${petsc_DIR}/lib")
 set(LINK_LIBS       ${LINK_LIBS}        "petsc")
 set(LINK_LIBS       ${LINK_LIBS}        "HYPRE")
 
-## set MPICH library directories
-#set(mpich_DIR       "/opt/mpich/mpich-4.2.1")
-#set(INCLUDE_DIRS    ${INCLUDE_DIRS}     "${mpich_DIR}/include")
-#set(LINK_DIRS       ${LINK_DIRS}        "${mpich_DIR}/lib")
-#set(LINK_LIBS       ${LINK_LIBS}        "mpifort")
-
 ## compile the c library
 add_library(RAND_C  STATIC      ${src_c_files})
 set(LINK_LIBS       ${LINK_LIBS}        RAND_C)
 
 ## compile the fortran program
-add_executable(${PROJECT_NAME}  ${src_f_files})
+add_executable(${PROJECT_NAME} ${src_f_files})
 
 ## link the libraries
 target_include_directories  (${PROJECT_NAME} PUBLIC ${INCLUDE_DIRS})
