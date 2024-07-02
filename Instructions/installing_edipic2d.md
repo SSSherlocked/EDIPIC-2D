@@ -39,13 +39,11 @@ the following document:
 
 ## Compiling EDIPIC-2D
 
-After setting the required environment variables, EDIPIC-2D can be compiled by using `make` in the `src` directory ::
+After setting the required environment variables, EDIPIC-2D can be compiled by using `cmake` ::
 
 ```
-export PETSC_DIR=path_to_petsc_installation
-export LD_LIBRARY_PATH=${PETSC_DIR}/lib:${LD_LIBRARY_PATH}
-cd src
-make
+mkdir -p build && cd build
+cmake .. && make
 ```
 
 If everything proceeds without error you will get an executable file named `edipic2d`.
