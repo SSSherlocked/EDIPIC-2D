@@ -12,6 +12,9 @@ set(CMAKE_Fortran_FLAGS     -ffree-line-length-none)
 file(GLOB src_f_files "src/*90")
 file(GLOB src_c_files "src/*.c")
 
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
 ## set PETSc and HYPRE library directories
 set(petsc_DIR       "/opt/petsc/petsc-3.21.3")
 set(INCLUDE_DIRS    ${INCLUDE_DIRS}     "${petsc_DIR}/include")
