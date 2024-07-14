@@ -16,7 +16,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 ## set PETSc and HYPRE library directories
-set(petsc_DIR       "/opt/petsc/petsc-3.21.3")
+set(petsc_DIR       ${PETSC_DIR})
 set(INCLUDE_DIRS    ${INCLUDE_DIRS}     "${petsc_DIR}/include")
 set(LINK_DIRS       ${LINK_DIRS}        "${petsc_DIR}/lib")
 set(LINK_LIBS       ${LINK_LIBS}        "petsc")
